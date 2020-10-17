@@ -1,11 +1,11 @@
-import React, { UseState } from 'react';
+import React, { useState } from 'react';
 import axios from "axios";
 
 
 
 const useGet = (() => {
 
-    initialState = {
+    const initialState = {
       data: {},
       loading: false,
       error: false
@@ -19,7 +19,7 @@ const useGet = (() => {
       )
       .then(result => {
         console.log(result);
-        this.setState({
+        setState({
           data: result.data.items,
           loading: false,
           error: false
@@ -27,7 +27,7 @@ const useGet = (() => {
       })
       .catch(error => {
         console.error("error: ", error);
-        this.setState({
+        setState({
           // objects cannot be used as a react child
           // -> <p>{error}</p> would throw otherwise
           error: `${error}`,

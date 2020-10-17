@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import "./style.css";
-import './useGet'
+import useGet from './useGet'
 
 export default function App() {
 
@@ -8,7 +8,12 @@ export default function App() {
 
   useEffect(() => {
        getData()
-    }, []);
+  }, []);
+
+  if (state.isLoading) {
+    return (<p>henter data</p>)
+  }
+    
 
   return (
     <div>
