@@ -1,7 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import "./style.css";
+import './useGet'
 
 export default function App() {
+
+  const [getData, state] = useGet()
+
+  useEffect(() => {
+       getData()
+    }, []);
+
   return (
     <div>
       <h1>Hello StackBlitz!</h1>
