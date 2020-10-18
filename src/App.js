@@ -1,10 +1,12 @@
 import React, { useEffect } from "react";
 import "./style.css";
-import useGet from './useGet'
+//import useGet from './useGet'
+import useGetReducer from './useGetReducer'
 
 export default function App() {
 
-  const [getData, state] = useGet()
+  //const [getData, state] = useGet()
+  const [getData, state] = useGetReducer()
 
   useEffect(() => {
        getData()
