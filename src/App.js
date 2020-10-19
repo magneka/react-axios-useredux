@@ -12,19 +12,21 @@ export default function App() {
        getData()
   }, []);
 
-  if (state.isLoading) {
+  if (state.loading) {
     return (<p>henter data</p>)
   }
-    
+
+  console.log ('state.data', state.data)  
 
   return (
     <div>
       <h1>Hello StackBlitz!</h1>
       <p>Start editing to see some magic happen :)</p>
       
-      {[...state.data].map((rec, i) => {
-          <div>test</div>
+      {state.data.map((value, index) => {
+        return <li key={index}>{value.html_url}</li>
       })}
+    
 
     </div>
   )

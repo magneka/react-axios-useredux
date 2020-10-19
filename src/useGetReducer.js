@@ -7,7 +7,7 @@ const useGetReducer = (() => {
   const LOADING = "LOADING"
   const DATA = 'DATA'
   const ERROR = 'ERROR'
-
+  
   const dataReducer = (state, action) => {
     
     console.log(JSON.stringify(action))
@@ -23,8 +23,8 @@ const useGetReducer = (() => {
       case DATA:
         return {
           loading: false,
-          data: [],
-          error: action.error
+          data: action.data,
+          error: null
         };
       case ERROR:
         return {
@@ -46,13 +46,14 @@ const useGetReducer = (() => {
 
   const [state, dispatch] = useReducer(dataReducer, initialState)
 
-  const getData = (props) => {      
+  const getData = (props) => { 
+    dispatch({ type: LOADING });    
     axios.get(
       `https://api.github.com/search/repositories?q=stars:>1+language:javascript&sort=stars&order=desc&type=Repositories`
     )
-    .then(result => {
-      console.log(result);
-      dispatch({ type: DATA, contributors: result.data });
+    .then(result => {        
+      console.log(result.data.items);
+      dispatch({ type: DATA, data: result.data.items });
     })
     .catch(error => {
       console.error("error: ", error);
