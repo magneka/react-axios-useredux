@@ -21,6 +21,11 @@ export default function App() {
     <div>
       <h1>Hello StackBlitz!</h1>
       <p>Start editing to see some magic happen :)</p>
+      
+      {[...state.data].map((rec, i) => {
+          <div>test</div>
+      })}
+
     </div>
-  );
+  )
 }

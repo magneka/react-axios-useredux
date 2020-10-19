@@ -23,7 +23,7 @@ const useGetReducer = (() => {
       case DATA:
         return {
           loading: false,
-          data: {},
+          data: [],
           error: action.error
         };
       case ERROR:
@@ -39,7 +39,7 @@ const useGetReducer = (() => {
   }
 
   const initialState = {
-    data: {},
+    data: [],
     loading: false,
     error: false
   }  
