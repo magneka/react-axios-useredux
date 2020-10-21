@@ -1,6 +1,13 @@
 import React, { useReducer } from 'react';
 import axios from "axios";
 
+function sleep(duration) {
+	return new Promise(resolve => {
+		setTimeout(() => {
+			resolve()
+		}, duration * 1000)
+	})
+}
 
 const useGetReducer = (() => {
 
@@ -46,12 +53,15 @@ const useGetReducer = (() => {
 
   const [state, dispatch] = useReducer(dataReducer, initialState)
 
-  const getData = (props) => { 
-    dispatch({ type: LOADING });    
+  const getData = async (props) => { 
+
+    dispatch({ type: LOADING }); 
+    //await sleep(5)  
+    
     axios.get(
       `https://api.github.com/search/repositories?q=stars:>1+language:javascript&sort=stars&order=desc&type=Repositories`
     )
-    .then(result => {        
+    .then(result => {              
       console.log(result.data.items);
       dispatch({ type: DATA, data: result.data.items });
     })
